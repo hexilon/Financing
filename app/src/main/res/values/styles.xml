@@ -1,36 +1,4 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="android:windowBackground">@color/md_blue_grey_50</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <item name="android:textColorSecondary">@color/textColorSecondary</item>
-        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>
-        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
-    </style>
-
-    <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@color/md_blue_grey_900</item>
-        <item name="colorPrimary">@color/colorPrimaryInverse</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkInverse</item>
-        <item name="colorAccent">@color/colorAccentInverse</item>
-        <item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>
-        <item name="android:textColorSecondary">@color/textColorSecondaryInverse</item>
-        <item name="android:textColorPrimaryInverse">@color/textColorPrimary</item>
-        <item name="android:textColorSecondaryInverse">@color/textColorSecondary</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
-    </style>
-
-    <style name="splashTheme" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/splash_bg</item>
-    </style>
-
 <!--    <style name="TabLayout">-->
 <!--        <item name="android:orientation">horizontal</item>-->
 <!--        <item name="android:background">@color/teal</item>-->

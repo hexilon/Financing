@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FinancingAssistant" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.FinancingAssistant" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/md_purple_500</item>
+        <item name="colorPrimary">@color/md_red_A200</item>
         <item name="colorPrimaryVariant">@color/md_purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -12,5 +12,38 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+    </style>
+
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="android:windowBackground">@color/md_blue_grey_50</item>-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--        <item name="android:textColorPrimary">@color/textColorPrimary</item>-->
+<!--        <item name="android:textColorSecondary">@color/textColorSecondary</item>-->
+<!--        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>-->
+<!--        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>-->
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+<!--        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>-->
+<!--    </style>-->
+
+<!--    <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">-->
+<!--        <item name="android:windowBackground">@color/md_blue_grey_900</item>-->
+<!--        <item name="colorPrimary">@color/colorPrimaryInverse</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDarkInverse</item>-->
+<!--        <item name="colorAccent">@color/colorAccentInverse</item>-->
+<!--        <item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>-->
+<!--        <item name="android:textColorSecondary">@color/textColorSecondaryInverse</item>-->
+<!--        <item name="android:textColorPrimaryInverse">@color/textColorPrimary</item>-->
+<!--        <item name="android:textColorSecondaryInverse">@color/textColorSecondary</item>-->
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+<!--        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>-->
+<!--    </style>-->
+
+    <style name="splashTheme" parent="Theme.FinancingAssistant">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
 </resources>

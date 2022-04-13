@@ -4,13 +4,13 @@
         <shape android:shape="rectangle">
             <gradient
                 android:angle="270"
-                android:startColor="@color/salmon"
-                android:endColor="@color/lightpink"/>
+                android:startColor="@color/lightpink"
+                android:endColor="@color/wheat"/>
         </shape>
     </item>
 
     <item android:gravity="center|bottom"
         android:drawable="@drawable/launcher_logo"
-        android:bottom="20dp">
+        android:bottom="36dp">
     </item>
 </layer-list>
