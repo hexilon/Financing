@@ -6,6 +6,8 @@ import android.os.Environment;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 
+//https://bugly.qq.com/docs/user-guide/instruction-manual-android-upgrade/?v=20220214194647
+
 public class BuglyUtils {
     public static void initBugly(Context context) {
         /**** Beta高级设置*****/
@@ -61,6 +63,6 @@ public class BuglyUtils {
          * 不设置会默认所有activity都可以显示弹窗;
          */
         Beta.canShowUpgradeActs.add(MainActivity.class);
-        Bugly.init(context, BuildConfig.BUGLY_APP_ID, true);
+        Bugly.init(context, BuildConfig.BUGLY_APP_ID, false);
     }
 }

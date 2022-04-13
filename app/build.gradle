@@ -21,8 +21,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         //bugly
-        buildConfigField "String", "BUGLY_APP_ID", '"0ae97d881f"'
-        buildConfigField "String", "BUGLY_APP_KEY", '"24fad471-8edf-4068-bd71-17eb7347db3a"'
+        buildConfigField "String", "BUGLY_APP_ID", '"03c514273e"'
+        buildConfigField "String", "BUGLY_APP_KEY", '"9fdef829-aa8d-4703-a503-ac6261c13b47"'
     }
 
     android.applicationVariants.all { variant ->
@@ -86,5 +86,5 @@ dependencies {
 
     //bugly
     api 'com.tencent.bugly:crashreport_upgrade:latest.release'
-    api 'com.tencent.bugly:nativecrashreport:3.7.3'
+    api 'com.tencent.bugly:nativecrashreport:latest.release'
 }
