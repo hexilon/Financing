@@ -1,4 +1,4 @@
-package com.hexon.financingassistant;
+package com.hexon.financing;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.hexon.financingassistant", appContext.getPackageName());
+        assertEquals("com.hexon.financing", appContext.getPackageName());
     }
 }

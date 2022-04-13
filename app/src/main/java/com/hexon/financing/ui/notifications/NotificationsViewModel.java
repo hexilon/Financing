@@ -1,4 +1,4 @@
-package com.hexon.financingassistant.ui.notifications;
+package com.hexon.financing.ui.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

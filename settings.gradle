@@ -22,7 +22,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "FinancingAssistant"
+rootProject.name = "Financing"
 include ':app'
 include ':util'
 include ':mvvm'

@@ -1,4 +1,4 @@
-package com.hexon.financingassistant;
+package com.hexon.financing;
 
 import android.Manifest;
 import android.app.Activity;

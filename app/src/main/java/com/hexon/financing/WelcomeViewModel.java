@@ -1,4 +1,4 @@
-package com.hexon.financingassistant;
+package com.hexon.financing;
 
 import static com.hexon.commonui.BaseSplashActivity.SP_KEY_FIRST_LAUNCH;
 

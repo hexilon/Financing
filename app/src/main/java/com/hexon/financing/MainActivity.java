@@ -1,4 +1,4 @@
-package com.hexon.financingassistant;
+package com.hexon.financing;
 
 import android.os.Bundle;
 
@@ -7,10 +7,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.hexon.financingassistant.databinding.ActivityMainBinding;
+import com.hexon.financing.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

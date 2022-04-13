@@ -1,4 +1,4 @@
-package com.hexon.financingassistant.ui.home;
+package com.hexon.financing.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.hexon.financingassistant.databinding.FragmentHomeBinding;
+import com.hexon.financing.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 

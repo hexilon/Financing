@@ -12,13 +12,17 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.hexon.financingassistant"
+        applicationId "com.hexon.financing"
         minSdk 21
         targetSdk 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //bugly
+        buildConfigField "String", "BUGLY_APP_ID", '"0ae97d881f"'
+        buildConfigField "String", "BUGLY_APP_KEY", '"24fad471-8edf-4068-bd71-17eb7347db3a"'
     }
 
     android.applicationVariants.all { variant ->
@@ -79,4 +83,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation project(path: ':CommonUI')
+
+    //bugly
+    api 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    api 'com.tencent.bugly:nativecrashreport:3.7.3'
 }

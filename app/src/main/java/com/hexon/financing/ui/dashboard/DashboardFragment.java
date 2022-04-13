@@ -1,4 +1,4 @@
-package com.hexon.financingassistant.ui.dashboard;
+package com.hexon.financing.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.hexon.financingassistant.databinding.FragmentDashboardBinding;
+import com.hexon.financing.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment {
 

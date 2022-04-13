@@ -1,4 +1,4 @@
-package com.hexon.financingassistant;
+package com.hexon.financing;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.hexon.commonui.PageIndicator;
-import com.hexon.financingassistant.databinding.ActivityWelcomeBinding;
+import com.hexon.financing.databinding.ActivityWelcomeBinding;
 import com.hexon.mvvm.base.BaseActivity;
 import com.hexon.util.LogUtils;
 

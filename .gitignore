@@ -44,6 +44,7 @@ captures/
 .idea/libraries
 .idea/caches
 .idea/modules.xml
+.idea/misc.xml
 # Comment next line if keeping position of elements in Navigation Editor is relevant for you
 .idea/navEditor.xml
 
@@ -79,3 +80,4 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+*.xml
