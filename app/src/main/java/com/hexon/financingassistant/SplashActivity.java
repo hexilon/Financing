@@ -1,5 +1,6 @@
 package com.hexon.financingassistant;
 
+import android.Manifest;
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -30,5 +31,11 @@ public class SplashActivity extends BaseSplashActivity {
     @Override
     public int initVariableId() {
         return 0;
+    }
+
+    @Override
+    public String[] getUsesPermission() {
+        return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_CONTACTS};
     }
 }

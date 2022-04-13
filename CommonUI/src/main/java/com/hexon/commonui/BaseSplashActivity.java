@@ -3,6 +3,8 @@ package com.hexon.commonui;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -20,8 +22,7 @@ public abstract class BaseSplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         SharedPrefsUtils sp = SharedPrefsUtils.getInstance(getApplication());
         mIsFirstLaunch = ((Boolean) sp.getData(SP_KEY_FIRST_LAUNCH, true));
-        requestRunTimePermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionCallback() {
+        requestRunTimePermissions(getUsesPermission(), new PermissionCallback() {
             @Override
             public void requestSuccess() {
                 Handler handler = new Handler();
@@ -42,6 +43,21 @@ public abstract class BaseSplashActivity extends BaseActivity {
 
     protected abstract Class<? extends Activity> getTheFirstSeed();
     protected abstract Class<? extends Activity> getTheMainSeed();
+
+    protected String[] getUsesPermission() {
+        PackageManager packageManager = getPackageManager();
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = packageManager.getPackageInfo(getPackageName(), PackageManager.GET_PERMISSIONS);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (packageInfo == null) {
+            return null;
+        }
+
+        return packageInfo.requestedPermissions;
+    }
 
     public void startSeeding() {
         Intent intent;
