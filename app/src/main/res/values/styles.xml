@@ -1,0 +1,64 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/md_blue_grey_50</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/md_blue_grey_900</item>
+        <item name="colorPrimary">@color/colorPrimaryInverse</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkInverse</item>
+        <item name="colorAccent">@color/colorAccentInverse</item>
+        <item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryInverse</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimary</item>
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondary</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+    </style>
+
+    <style name="splashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+    </style>
+
+<!--    <style name="TabLayout">-->
+<!--        <item name="android:orientation">horizontal</item>-->
+<!--        <item name="android:background">@color/teal</item>-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">@dimen/title_tab_bar</item>-->
+<!--        <item name="android:padding">8dp</item>-->
+<!--        <item name="android:gravity">center_vertical</item>-->
+<!--    </style>-->
+
+    <style name="ExchangeRateItem">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ExchangeRateItem.Title" parent="ExchangeRateItem">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ExchangeRateItem.Price" parent="ExchangeRateItem">
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="ExchangeRateItem.Summary" parent="ExchangeRateItem">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="ForexEventItem">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>

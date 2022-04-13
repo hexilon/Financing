@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FinancingAssistant.iml" filepath="$PROJECT_DIR$/.idea/modules/FinancingAssistant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ChartLib/FinancingAssistant.ChartLib.iml" filepath="$PROJECT_DIR$/.idea/modules/ChartLib/FinancingAssistant.ChartLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CommonUI/FinancingAssistant.CommonUI.iml" filepath="$PROJECT_DIR$/.idea/modules/CommonUI/FinancingAssistant.CommonUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FinancingAssistant.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FinancingAssistant.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mvvm/FinancingAssistant.mvvm.iml" filepath="$PROJECT_DIR$/.idea/modules/mvvm/FinancingAssistant.mvvm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/FinancingAssistant.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/FinancingAssistant.util.iml" />
+    </modules>
+  </component>
+</project>

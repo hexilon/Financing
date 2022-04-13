@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/md_red_A200</color>
+    <color name="colorPrimaryDark">#c50e29</color>
+    <color name="colorAccent">#ff867f</color>
+
+    <color name="colorPrimaryInverse">@color/md_red_A200</color>
+    <color name="colorPrimaryDarkInverse">#c50e29</color>
+    <color name="colorAccentInverse">#ff867f</color>
+
+    <color name="secondaryColor">#d32f2f</color>
+    <color name="secondaryLightColor">#ff6659</color>
+    <color name="secondaryDarkColor">#9a0007</color>
+
+    <color name="textColorPrimary">#000000</color>
+    <color name="textColorSecondary">#555555</color>
+    <color name="textColorPrimaryInverse">#ffffff</color>
+    <color name="textColorSecondaryInverse">#aaaaaa</color>
+
+    <color name="today">#50ACF7</color>
+    <color name="importanceLow">#55FF4500</color>
+    <color name="importanceMid">#AAFF4500</color>
+    <color name="importanceHigh">#FFFF4500</color>
+    <color name="importanceNone">@color/white</color>
+</resources>
