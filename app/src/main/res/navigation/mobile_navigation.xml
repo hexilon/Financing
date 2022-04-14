@@ -12,14 +12,26 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.hexon.financing.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_noble_metal"
+        android:name="com.hexon.financing.ui.noblemetal.NobleMetalFragment"
+        android:label="@string/title_noble_metal"
+        tools:layout="@layout/fragment_noble_metal" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.hexon.financing.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_fund"
+        android:name="com.hexon.financing.ui.fund.FundFragment"
+        android:label="@string/title_fund"
+        tools:layout="@layout/fragment_fund" />
+
+    <fragment
+        android:id="@+id/navigation_stock"
+        android:name="com.hexon.financing.ui.stock.StockFragment"
+        android:label="@string/title_stock"
+        tools:layout="@layout/fragment_stock" />
+
+    <fragment
+        android:id="@+id/navigation_mine"
+        android:name="com.hexon.financing.ui.mine.MineFragment"
+        android:label="@string/title_mine"
+        tools:layout="@layout/fragment_mine" />
 </navigation>

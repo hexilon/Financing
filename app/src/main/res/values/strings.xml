@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Financing Assistant</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="start_experience">Start Experience</string>
+    <string name="title_noble_metal">Noble Metal</string>
+    <string name="title_fund">Fund</string>
+    <string name="title_stock">Stock</string>
+    <string name="title_mine">Mine</string>
 </resources>
