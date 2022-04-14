@@ -12,7 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@color/md_blue_grey_50</item>
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
         <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
     </style>
 
@@ -45,5 +46,6 @@
 
     <style name="splashTheme" parent="Theme.Financing">
         <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

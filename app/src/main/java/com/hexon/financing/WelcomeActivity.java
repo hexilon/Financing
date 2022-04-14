@@ -15,6 +15,7 @@ import com.hexon.commonui.PageIndicator;
 import com.hexon.financing.databinding.ActivityWelcomeBinding;
 import com.hexon.mvvm.base.BaseActivity;
 import com.hexon.util.LogUtils;
+import com.hexon.util.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,11 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeBinding, Welcom
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void initParam() {
+        UIUtils.setTransparentStatusBar(this, false);
     }
 
     @Override

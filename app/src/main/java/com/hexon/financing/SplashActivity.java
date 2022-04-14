@@ -5,12 +5,18 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.hexon.commonui.BaseSplashActivity;
+import com.hexon.util.UIUtils;
 
 public class SplashActivity extends BaseSplashActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void initParam() {
+        UIUtils.setTransparentStatusBar(this, true);
     }
 
     @Override

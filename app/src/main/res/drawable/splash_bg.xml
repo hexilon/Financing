@@ -11,6 +11,6 @@
 
     <item android:gravity="center|bottom"
         android:drawable="@drawable/launcher_logo"
-        android:bottom="36dp">
+        android:bottom="48dp">
     </item>
 </layer-list>
