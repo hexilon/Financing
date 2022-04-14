@@ -9,8 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.core.view.ViewCompat;
 
 /**
  * Copyright (C), 2022-2030

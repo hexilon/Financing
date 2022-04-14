@@ -31,7 +31,7 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeBinding, Welcom
 
     @Override
     public void initParam() {
-        UIUtils.setTransparentStatusBar(this, false);
+        UIUtils.setTransparentStatusBar(this, true);
     }
 
     @Override
