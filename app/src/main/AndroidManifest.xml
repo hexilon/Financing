@@ -30,7 +30,7 @@
         tools:targetApi="m">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/splashTheme"
+            android:theme="@style/Theme.Financing.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,8 +38,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".WelcomeActivity"
+            android:theme="@style/Theme.Financing.NoActionBar"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.Financing.NoActionBar"/>
         <!--bugly-->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
