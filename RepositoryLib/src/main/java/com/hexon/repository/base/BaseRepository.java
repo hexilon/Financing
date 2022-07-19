@@ -1,5 +1,9 @@
 package com.hexon.repository.base;
 
+import android.app.Application;
+
+import com.hexon.repository.Constants;
+import com.hexon.util.SharedPrefsUtils;
 import com.hexon.util.constant.TimeConstants;
 
 public class BaseRepository {

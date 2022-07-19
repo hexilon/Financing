@@ -2,9 +2,10 @@ package com.hexon.financing;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.hexon.financing.common.NetworkUpdateCycle;
+import com.hexon.financing.common.NetworkUpdatePeriod;
 import com.hexon.financing.util.BuglyUtils;
 import com.hexon.mvvm.base.BaseApplication;
+import com.hexon.repository.IcbcRepository;
 import com.hexon.util.LogUtils;
 
 public class MyApplication extends BaseApplication {
@@ -20,10 +21,15 @@ public class MyApplication extends BaseApplication {
         sApp = this;
         LogUtils.initLogger(this, BuildConfig.DEBUG);
         BuglyUtils.initBugly(getApplicationContext());
-        NetworkUpdateCycle.init(this);
+        NetworkUpdatePeriod.init(this);
+        IcbcRepository.getInstance(this);//用于初始化当天的实时数据
     }
 
-    public MutableLiveData<Long> getUpdateCycle() {
-        return NetworkUpdateCycle.getUpdateCycle();
+    public MutableLiveData<Long> getUpdatePeriod() {
+        return NetworkUpdatePeriod.getUpdatePeriod();
+    }
+
+    public void setUpdatePeriod(long period) {
+        NetworkUpdatePeriod.setUpdatePeriod(period);
     }
 }

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/list_item_margin"
-        android:padding="5dp"
+        android:padding="8dp"
         android:background="@drawable/bg_list_item_light"
         android:clickable="true"
         android:orientation="vertical">
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="@dimen/view_margin"
+            android:layout_marginBottom="@dimen/view_margin"
             android:orientation="horizontal">
 
             <com.hexon.commonui.AdaptionSizeTextView
@@ -51,7 +52,7 @@
                 android:gravity="center"
                 android:text='@{String.valueOf(entity.mChange).concat("%")}'
                 android:textColor="@{entity.mChange > 0f ? @color/increase : (entity.mChange &lt; 0f ? @color/decrease : @color/neutral_dark)}"
-                android:textSize="14sp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -59,6 +60,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:layout_marginTop="@dimen/view_margin"
             android:layout_marginBottom="@dimen/view_margin"
             android:orientation="horizontal">
 
@@ -70,7 +72,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@{String.valueOf(entity.mLow)}"
-                android:textSize="14sp"/>
+                android:textSize="18sp"/>
 
             <com.hexon.commonui.AdaptionSizeTextView
                 android:id="@+id/high_price"
@@ -80,7 +82,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@{String.valueOf(entity.mHigh)}"
-                android:textSize="14sp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
     </LinearLayout>
 </layout>

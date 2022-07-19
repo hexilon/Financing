@@ -15,4 +15,8 @@
     <string name="update_countdown">更新|%1$d秒</string>
     <string name="update">更新</string>
     <string name="updating">更新中</string>
+    <string name="update_period">更新周期</string>
+    <string name="second">秒</string>
+    <string name="mobile">数据</string>
+    <string name="restore">恢复默认</string>
 </resources>

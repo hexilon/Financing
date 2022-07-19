@@ -154,7 +154,12 @@ public class IcbcRepository extends BaseRepository {
 
     private void initData() {
         // 获取一次今天的数据用于计算涨跌幅度,同时用于判定有没有开市
-        checkMarketOpen();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                checkMarketOpen();
+            }
+        }).start();
         for (Constants.MetalType metalType : Constants.MetalType.values()) {
             getTodayDatas(metalType)
                     .subscribeOn(Schedulers.io())

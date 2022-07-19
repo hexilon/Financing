@@ -1,5 +1,7 @@
 package com.hexon.repository;
 
+import com.hexon.util.constant.TimeConstants;
+
 import java.io.Serializable;
 
 /**
@@ -11,12 +13,20 @@ import java.io.Serializable;
  * Version V1.0
  */
 public class Constants {
+    public static final long WIFI_UPDATE_PERIOD = 5 * TimeConstants.SEC;//5sec
+    public static final long MOBILE_UPDATE_PERIOD = 30 * TimeConstants.SEC;//30sec
+
     public static final String ROOM_ICBC_DB_NAME = "icbc.room.db";
 
     public final static String PATTERN_DATE_REALTIME = "yyyy.MM.dd HH:mm:ss";
     public final static String PATTERN_DATE_HISTORY = "yyyy.MM.dd";
     public final static String PATTERN_DATE_GENERAL = "HH:mm:ss";
     public static final String ACTION_UPDATE_DB = "com.hexon.financing.intent.action.UPDATE_DB";
+
+    // custom mobile update period
+    public static final String SP_KEY_CUSTOM_MOBILE_UPDATE_PERIOD = "mobile_update_period";
+    // custom wifi update period
+    public static final String SP_KEY_CUSTOM_WIFI_UPDATE_PERIOD = "wifi_update_period";
 
     // 最后获取数据的时间
     public static final String SP_KEY_METAL_LAST_FETCH_TIME = "metal_last_fetch_time";

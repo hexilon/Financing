@@ -14,4 +14,9 @@
     <string name="market_close">Closing</string>
     <string name="update_countdown">Update|%1$d S</string>
     <string name="updating">Updating</string>
+    <string name="update_period">Update period</string>
+    <string name="wifi" translatable="false">WIFI</string>
+    <string name="second">Second</string>
+    <string name="mobile">Mobile</string>
+    <string name="restore">Restore</string>
 </resources>

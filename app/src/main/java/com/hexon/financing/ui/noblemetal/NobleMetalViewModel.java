@@ -72,7 +72,7 @@ public class NobleMetalViewModel extends NetworkViewModel {
         if (mIcbcRepo.isMarketOpening()) {
             mIsStartRefresh.postValue(true);
         }
-        mDisposable = Flowable.interval(0, mUpdateCycle, TimeUnit.MILLISECONDS)
+        mDisposable = Flowable.interval(0, mUpdatePeriod, TimeUnit.MILLISECONDS)
                 .takeUntil(aLong -> {
                     mIsStartRefresh.postValue(false);
                     return !mIcbcRepo.isMarketOpening();
@@ -108,7 +108,7 @@ public class NobleMetalViewModel extends NetworkViewModel {
                         List<RealtimeQuotesEntity> list = listResource.getData();
                         for (RealtimeQuotesEntity entity : list) {
                             Constants.MetalType type = Constants.MetalType.values()[entity.mType];
-                            LogUtils.d("fetchIcbcRealtimeQuotes:" + entity);
+                            //LogUtils.d("fetchIcbcRealtimeQuotes:" + entity);
                             mList.get(type.ordinal()).postValue(entity);
                         }
                     }
@@ -135,6 +135,13 @@ public class NobleMetalViewModel extends NetworkViewModel {
 
     public void setNobleMetal(Constants.NobleMetalBank bank) {
         mBank = bank;
+        startGetData();
+    }
+
+    public void updateOnce() {
+        stopGetData();
+        fetchIcbcRealtimeQuotes();
+        mIsStartRefresh.postValue(false);
         startGetData();
     }
 }

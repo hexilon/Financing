@@ -6,18 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.databinding.library.baseAdapters.BR;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hexon.chartlib.stock.model.RealtimeQuotesEntity;
 import com.hexon.financing.R;
@@ -40,7 +40,7 @@ import com.hexon.util.constant.TimeConstants;
 public class NobleMetalFragment extends BaseFragment<FragmentNobleMetalBinding, NobleMetalViewModel> {
     static final int SPAN_COUNT = 2;
     CountDownTimer mTimer;
-    MaterialDialog mUpdateCycleSettingDlg;
+    MaterialDialog mUpdatePeriodSettingDlg;
     NobleMetalDataAdapter mAdapter;
     Constants.NobleMetalBank mBank;
 
@@ -80,12 +80,13 @@ public class NobleMetalFragment extends BaseFragment<FragmentNobleMetalBinding, 
         mBinding.btnIcbcSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //showEditIcbcProductDialog();
+                showUpdateSettingDialog();
             }
         });
         mBinding.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mViewModel.updateOnce();
             }
         });
         if (!mViewModel.isMarketOpen()) {
@@ -113,7 +114,7 @@ public class NobleMetalFragment extends BaseFragment<FragmentNobleMetalBinding, 
 
     private void startCountDown() {
         stopCountDown();
-        mTimer = new CountDownTimer(mViewModel.getUpdateCycle(), TimeConstants.SEC) {
+        mTimer = new CountDownTimer(mViewModel.getUpdatePeriod(), TimeConstants.SEC) {
             @Override
             public void onTick(long l) {
                 if (isAdded()) {
@@ -129,6 +130,61 @@ public class NobleMetalFragment extends BaseFragment<FragmentNobleMetalBinding, 
             }
         };
         mTimer.start();
+    }
+
+    private void showUpdateSettingDialog() {
+        mUpdatePeriodSettingDlg = new MaterialDialog.Builder(getContext())
+                .title(R.string.update_period)
+                .customView(R.layout.dialog_update_cycle_settings, true)
+                .autoDismiss(false)
+                .positiveText(android.R.string.ok)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        String wifiPeriod =
+                                ((EditText) dialog.getCustomView().findViewById(R.id.et_wifi))
+                                        .getText().toString();
+                        String mobilePeriod =
+                                ((EditText) dialog.getCustomView().findViewById(R.id.et_mobile))
+                                        .getText().toString();
+                        if (!wifiPeriod.isEmpty()) {
+                            mViewModel.setWifiUpdatePeriod(Long.parseLong(wifiPeriod) * TimeConstants.SEC);
+                        }
+                        if (!mobilePeriod.isEmpty()) {
+                            mViewModel.setMobileUpdatePeriod(Long.parseLong(mobilePeriod) * TimeConstants.SEC);
+                        }
+                        dialog.dismiss();
+                    }
+                })
+                .negativeText(android.R.string.cancel)
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                })
+                .neutralText(R.string.restore)
+                .onNeutral(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        View customView = dialog.getCustomView();
+                        if (customView != null) {
+                            ((EditText) customView.findViewById(R.id.et_wifi))
+                                    .setText("" + Constants.WIFI_UPDATE_PERIOD / TimeConstants.SEC);
+                            ((EditText) customView.findViewById(R.id.et_mobile))
+                                    .setText("" + Constants.MOBILE_UPDATE_PERIOD / TimeConstants.SEC);
+                        }
+                    }
+                })
+                .build();
+        View customView = mUpdatePeriodSettingDlg.getCustomView();
+        if (customView != null) {
+            ((EditText) customView.findViewById(R.id.et_wifi))
+                    .setText("" + mViewModel.getWifiUpdatePeriod() / TimeConstants.SEC);
+            ((EditText) customView.findViewById(R.id.et_mobile))
+                    .setText("" + mViewModel.getMobileUpdatePeriod() / TimeConstants.SEC);
+        }
+        mUpdatePeriodSettingDlg.show();
     }
 
     private class NobleMetalDataAdapter
