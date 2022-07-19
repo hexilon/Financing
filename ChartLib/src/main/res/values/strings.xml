@@ -1,0 +1,14 @@
+<resources>
+    <string name="loading">Loading</string>
+    <string name="no_data">No data</string>
+    <string name="macd" translatable="false">MACD</string>
+    <string name="kdj" translatable="false">KDJ</string>
+    <string name="rsi" translatable="false">RSI</string>
+    <string name="boll" translatable="false">BOLL</string>
+    <string name="cci" translatable="false">CCI</string>
+    <string name="ema" translatable="false">EMA</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="highest">Highest</string>
+    <string name="lowest">Lowest</string>
+</resources>

@@ -16,6 +16,7 @@
         <item name="android:windowBackground">@color/windowBackground</item>
 <!--        <item name="android:windowTranslucentStatus">true</item>-->
         <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+        <item name="imageButtonStyle">@style/Widget.AppCompat.Button.Colored</item>
     </style>
 
     <style name="Theme.Financing.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -29,6 +30,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+        <item name="imageButtonStyle">@style/Widget.AppCompat.Button.Colored</item>
     </style>
 
     <style name="Theme.Financing.Splash" parent="Theme.Financing.NoActionBar">

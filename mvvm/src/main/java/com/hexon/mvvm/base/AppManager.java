@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.ObservableBoolean;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 
 import com.hexon.mvvm.utils.LogUtils;
 
@@ -18,10 +19,10 @@ public class AppManager implements Application.ActivityLifecycleCallbacks {
     private static Stack<Activity> sActivityStack;
     private static Stack<Fragment> sFragmentStack;
     private static AppManager sInstance;
-    private ObservableBoolean mIsAppForeground = new ObservableBoolean();
+    private MutableLiveData<Boolean> mIsAppForeground = new MutableLiveData<>();
 
     private AppManager() {
-        mIsAppForeground.set(true);
+        mIsAppForeground.setValue(true);
     }
 
     public static AppManager getAppManager() {
@@ -36,7 +37,7 @@ public class AppManager implements Application.ActivityLifecycleCallbacks {
         return sInstance;
     }
 
-    public ObservableBoolean getIsAppForeground() {
+    public MutableLiveData<Boolean> getIsAppForeground() {
         return mIsAppForeground;
     }
 
@@ -166,8 +167,8 @@ public class AppManager implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
-        if(!mIsAppForeground.get()){
-            mIsAppForeground.set(true); // background switch foreground
+        if(!mIsAppForeground.getValue()){
+            mIsAppForeground.setValue(true); // background switch foreground
             LogUtils.d("background to foreground");
         }
     }
@@ -185,7 +186,7 @@ public class AppManager implements Application.ActivityLifecycleCallbacks {
     @Override
     public void onActivityStopped(@NonNull Activity activity) {
         if(sActivityStack.empty()){
-            mIsAppForeground.set(false); // foreground switch background
+            mIsAppForeground.setValue(false); // foreground switch background
             LogUtils.d("foreground switch background");
         }
     }

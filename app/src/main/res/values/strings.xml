@@ -6,4 +6,12 @@
     <string name="title_fund">Fund</string>
     <string name="title_stock">Stock</string>
     <string name="title_mine">Mine</string>
+    <string name="icbc">ICBC</string>
+    <string name="edit">Edit</string>
+    <string name="refresh">Refresh</string>
+    <string name="update">Update</string>
+    <string name="settings">Settings</string>
+    <string name="market_close">Closing</string>
+    <string name="update_countdown">Update|%1$d S</string>
+    <string name="updating">Updating</string>
 </resources>

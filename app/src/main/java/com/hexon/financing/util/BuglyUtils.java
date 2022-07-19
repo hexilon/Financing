@@ -1,8 +1,11 @@
-package com.hexon.financing;
+package com.hexon.financing.util;
 
 import android.content.Context;
 import android.os.Environment;
 
+import com.hexon.financing.BuildConfig;
+import com.hexon.financing.MainActivity;
+import com.hexon.financing.R;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 

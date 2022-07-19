@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="increase">#ff403C</color><!-- 行情UP颜色  涨-->
+    <color name="decrease">@color/limegreen</color><!-- 行情DOWN颜色  跌 -->
+    <color name="neutral_dark">#000000</color><!-- 行情Equal颜色  不变 -->
+    <color name="neutral_light">#ffffff</color><!-- 行情Equal颜色  不变 -->
+    <color name="neutral">#ffffff</color><!-- 行情Equal颜色  不变 -->
+
+    <color name="ma5">#5198FA</color>
+    <color name="ma10">#E9967A</color>
+    <color name="ma20">#8d4bbb</color>
+    <color name="ma30">#804000</color>
+
+    <!-- chart -->
+    <color name="chart_bg">#ffffff</color>
+    <color name="marker_bg">#406ebc</color>
+    <color name="marker_text_color">#FFFFFF</color>
+    <color name="border_color">#FFFFFF</color>
+    <color name="grid_color">#55e8e8e8</color>
+    <color name="label_text">#ffffff</color>
+    <color name="axis_text">#ffffff</color>
+    <color name="minute_jizhun">#7F9976</color>
+    <color name="minute_blue">#5198FA</color>
+    <color name="minute_yellow">#E7B448</color>
+    <color name="highlight">#08E6F0</color>
+    <color name="fill_color">#D0F1FF</color>
+    <color name="positive">#E9403C</color>
+    <color name="negative">@color/limegreen</color>
+</resources>

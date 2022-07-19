@@ -5,4 +5,10 @@
         <item>@mipmap/guide2</item>
         <item>@mipmap/guide3</item>
     </integer-array>
+
+    <string-array name="noble_metal_products">
+        <item>ICBC</item>
+        <item>CMB</item>
+        <item>ABC</item>
+    </string-array>
 </resources>

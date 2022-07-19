@@ -3,13 +3,16 @@ package com.hexon.mvvm.base;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.ObservableBoolean;
 import androidx.lifecycle.MutableLiveData;
 
 import com.hexon.util.NetworkStateMonitor;
+import com.hexon.util.SharedPrefsUtils;
 
 
 public class BaseApplication extends Application {
     private static Application sInstance;
+    public SharedPrefsUtils mSp;
     /* 网络是否可用 */
     private NetworkStateMonitor mNetMonitor;
 
@@ -18,6 +21,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         setApplication(this);
         mNetMonitor = NetworkStateMonitor.getInstance(this);
+        mSp = SharedPrefsUtils.getInstance(this);
     }
 
     @Override
@@ -53,5 +57,9 @@ public class BaseApplication extends Application {
             throw new NullPointerException("Please inherit BaseApplication or call setApplication.");
         }
         return sInstance;
+    }
+
+    public MutableLiveData<Boolean> getIsAppForeground() {
+        return AppManager.getAppManager().getIsAppForeground();
     }
 }

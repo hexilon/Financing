@@ -7,4 +7,12 @@
     <string name="title_fund">基金</string>
     <string name="title_stock">股市</string>
     <string name="title_mine">我的</string>
+    <string name="icbc">工行贵金属</string>
+    <string name="edit">Edit</string>
+    <string name="refresh">Refresh</string>
+    <string name="settings">设置</string>
+    <string name="market_close">休市</string>
+    <string name="update_countdown">更新|%1$d秒</string>
+    <string name="update">更新</string>
+    <string name="updating">更新中</string>
 </resources>
