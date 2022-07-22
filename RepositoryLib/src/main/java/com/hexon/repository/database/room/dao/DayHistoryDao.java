@@ -28,7 +28,7 @@ public interface DayHistoryDao {
     Single<DayHistory> query(long id);
 
     @Query("SELECT * from DayHistory WHERE :type = type")
-    Single<List<DayHistory>> query(int type);
+    Single<List<DayHistory>> query(String type);
 
     /*Insert*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)

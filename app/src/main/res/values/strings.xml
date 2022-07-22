@@ -19,4 +19,15 @@
     <string name="second">Second</string>
     <string name="mobile">Mobile</string>
     <string name="restore">Restore</string>
+    <string name="exchange_rate">Exchange rate</string>
+    <string name="forex_calendar">Forex calendar</string>
+    <string name="live_news">Live news</string>
+    <string name="realtime_quotes">Realtime quotes</string>
+
+    <string name="fx_open">Open</string>
+    <string name="fx_close">Close</string>
+    <string name="fx_amplitude">Amplitude</string>
+    <string name="fx_volatility_range">Volatility Range</string>
+    <string name="fx_low">Low</string>
+    <string name="fx_high">High</string>
 </resources>

@@ -22,22 +22,14 @@ import io.reactivex.Flowable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Copyright (C), 2022-2030
- * ClassName: NobleMetalViewModel
- * Description:
- * Author: Hexon
- * Date: 2022/4/14 15:37
- * Version V1.0
- */
-public class NobleMetalViewModel extends NetworkViewModel {
+public class RealtimeQuotesViewModel extends NetworkViewModel {
     IcbcRepository mIcbcRepo = IcbcRepository.getInstance(MyApplication.getInstance());
     ArrayList<MutableLiveData<RealtimeQuotesEntity>> mList =
             new ArrayList<>(Constants.MetalType.values().length);
     private Disposable mDisposable;
     private Constants.NobleMetalBank mBank;
 
-    public NobleMetalViewModel(@NonNull Application application) {
+    public RealtimeQuotesViewModel(@NonNull Application application) {
         super(application);
         initList();
     }

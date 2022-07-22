@@ -31,7 +31,13 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         if (shouldFetch(dbResource)) {
             source = createCall()
                     .subscribeOn(Schedulers.io())
-                    .doOnNext(apiResponse -> saveCallResult(processResponse(apiResponse)))
+                    .doOnNext(apiResponse -> {
+                        if (apiResponse.isSuccessful()) {
+                            saveCallResult(processResponse(apiResponse));
+                        } else {
+                            LogUtils.e(apiResponse.errorMessage);
+                        }
+                    })
                     .flatMap(apiResponse -> loadFromDb().toObservable().map(Resource::success))
                     .doOnError(this::onFetchFailed)
                     .onErrorResumeNext(t -> {

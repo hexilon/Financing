@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.hexon.financing.common.NetworkUpdatePeriod;
 import com.hexon.financing.util.BuglyUtils;
 import com.hexon.mvvm.base.BaseApplication;
-import com.hexon.repository.IcbcRepository;
+import com.hexon.repository.repo.IcbcRepository;
 import com.hexon.util.LogUtils;
 
 public class MyApplication extends BaseApplication {

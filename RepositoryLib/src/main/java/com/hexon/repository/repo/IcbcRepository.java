@@ -1,5 +1,6 @@
-package com.hexon.repository;
+package com.hexon.repository.repo;
 
+import static com.hexon.repository.Constants.DEFAULT_CONNECT_TIMEOUT;
 import static com.hexon.repository.Constants.SP_KEY_METAL_NOW_QUOTE;
 import static com.hexon.repository.http.IcbcService.DATA_TYPE;
 
@@ -13,6 +14,7 @@ import com.hexon.chartlib.stock.model.HistoryEntity;
 import com.hexon.chartlib.stock.model.RealtimeEntity;
 import com.hexon.chartlib.stock.model.RealtimeQuotesEntity;
 import com.hexon.mvvm.base.BaseApplication;
+import com.hexon.repository.Constants;
 import com.hexon.repository.base.ApiResponse;
 import com.hexon.repository.base.BaseRepository;
 import com.hexon.repository.base.NetworkBoundResource;
@@ -42,6 +44,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -83,7 +86,6 @@ public class IcbcRepository extends BaseRepository {
 
     static IcbcRepository sInstance;
 
-    BaseApplication mApp;
     IcbcService mService;
     SharedPrefsUtils mSpUtils;
     IcbcDatabase mRoom;
@@ -133,7 +135,7 @@ public class IcbcRepository extends BaseRepository {
     }};
 
     private IcbcRepository(BaseApplication application) {
-        mApp = application;
+        super(application);
         //HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();//打印日志
         //httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);//设定日志级别
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -189,15 +191,37 @@ public class IcbcRepository extends BaseRepository {
         return sInstance;
     }
 
+    int getDataTimeType(Constants.PeriodType periodType) {
+        int result;
+        switch (periodType) {
+            case  DAY:
+                result = 0;
+            case WEEK:
+                result = 1;
+            case MONTH:
+                result = 2;
+            case REALTIME:
+                result = 3;
+                break;
+            default:
+                result = 3;
+        }
+
+        return result;
+    }
+
     private void checkMarketOpen() {
         // TODO 找到确定的方法检测是否开盘
-        Response<ResponseBody> response = mService.getHistoryByPeriod(
-                DATA_TYPE, getMetalString(Constants.MetalType.RMB_GOLD),
-                Constants.PeriodType.REALTIME.ordinal())
-                .subscribeOn(Schedulers.io())
-                .blockingSingle();
         try {
+            Response<ResponseBody> response = mService.getHistoryByPeriod(
+                            DATA_TYPE, getMetalString(Constants.MetalType.RMB_GOLD),
+                            getDataTimeType(Constants.PeriodType.REALTIME))
+                    .subscribeOn(Schedulers.io())
+                    .blockingSingle();
+
             parseTodayDatasResponse(Constants.MetalType.RMB_GOLD, response.body().string());
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -501,7 +525,7 @@ public class IcbcRepository extends BaseRepository {
             protected Observable<ApiResponse<ResponseBody>> createCall() {
                 LogUtils.d("createCall");
                 mSpUtils.putData(getHistorySpKey(metal, period), Calendar.getInstance());
-                return mService.getHistoryByPeriod(0, getMetalString(metal), period.ordinal())
+                return mService.getHistoryByPeriod(0, getMetalString(metal), getDataTimeType(period))
                         .map(new Function<Response<ResponseBody>, ApiResponse<ResponseBody>>() {
                             @Override
                             public ApiResponse<ResponseBody> apply(Response<ResponseBody> responseBody) throws Exception {
@@ -546,24 +570,8 @@ public class IcbcRepository extends BaseRepository {
                 });
     }
 
-    private List<HistoryEntity> convertEntityList(List<? extends History> list) {
-        List<HistoryEntity> entityList = new ArrayList<>();
-        for (History entry : list) {
-            HistoryEntity entity = new HistoryEntity();
-            entity.mDate = Calendar.getInstance();
-            entity.mDate.setTimeInMillis(entry.mTimestamp);
-            entity.mOpen = entry.mOpen;
-            entity.mClose = entry.mClose;
-            entity.mHigh = entry.mHigh;
-            entity.mLow = entry.mLow;
-            entityList.add(entity);
-        }
-
-        return entityList;
-    }
-
     private Observable<List<HistoryEntity>> getDayHistoryDatas(Constants.MetalType type) {
-        return mRoom.dayHistoryDao().query(type.ordinal()).toObservable()
+        return mRoom.dayHistoryDao().query(type.name()).toObservable()
                 .map(new Function<List<DayHistory>, List<HistoryEntity>>() {
                     @Override
                     public List<HistoryEntity> apply(List<DayHistory> list) throws Exception {
@@ -615,7 +623,7 @@ public class IcbcRepository extends BaseRepository {
             } catch (IllegalAccessException | InstantiationException e) {
                 e.printStackTrace();
             }
-            history.set(type, entry);
+            history.set(type.name(), entry);
             entityList.add(history);
         }
 
@@ -725,7 +733,7 @@ public class IcbcRepository extends BaseRepository {
             protected Observable<ApiResponse<ResponseBody>> createCall() {
                 mSpUtils.putData(getHistorySpKey(type, Constants.PeriodType.REALTIME), Calendar.getInstance());
                 return mService.getHistoryByPeriod(0, getMetalString(type),
-                        Constants.PeriodType.REALTIME.ordinal()).map(new Function<Response<ResponseBody>, ApiResponse<ResponseBody>>() {
+                        getDataTimeType(Constants.PeriodType.REALTIME)).map(new Function<Response<ResponseBody>, ApiResponse<ResponseBody>>() {
                     @Override
                     public ApiResponse<ResponseBody> apply(Response<ResponseBody> responseBody) throws Exception {
                         return new ApiResponse(responseBody);
@@ -813,6 +821,7 @@ public class IcbcRepository extends BaseRepository {
     }
 
     private RealtimeEntity jsonArrayToRealtime(JSONArray jsonData) {
+        // LogUtils.d("jsonArrayToRealtime " + jsonData);
         RealtimeEntity realtime = new RealtimeEntity();
 
         try {

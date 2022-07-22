@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.hexon.repository.database.room.entity.MonthHistory;
+import com.hexon.repository.database.room.entity.History;
 
 import java.util.List;
 
@@ -15,30 +15,33 @@ import io.reactivex.Single;
 
 /**
  * Copyright (C), 2020-2025
- * FileName    : MonthHistoryDao
+ * FileName    : DayHistoryDao
  * Description :
  * Author      : Hexon
  * Date        : 2020/8/18 16:57
  * Version     : V1.0
  */
 @Dao
-public interface MonthHistoryDao {
+public interface HistoryDao {
     /*query*/
-    @Query("SELECT * from MonthHistory WHERE :type = type order by timestamp ASC")
-    Single<List<MonthHistory>> query(int type);
+    @Query("SELECT * from History WHERE :id = id order by timestamp ASC")
+    abstract Single<History> query(long id);
+
+    @Query("SELECT * from History WHERE :type = type")
+    abstract Single<List<History>> query(String type);
 
     /*Insert*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertHistories(List<MonthHistory> histories);
+    abstract void insertHistories(List<History> histories);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(MonthHistory history);
+    abstract long insert(History history);
 
     /*update*/
     @Update
-    int update(MonthHistory history);
+    abstract int update(History history);
 
     /*delete*/
     @Delete
-    void delete(MonthHistory history);
+    abstract void delete(History history);
 }

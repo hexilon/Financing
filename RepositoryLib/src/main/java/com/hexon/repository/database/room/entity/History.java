@@ -20,7 +20,7 @@ public abstract class History {
     public long id;
 
     @ColumnInfo(name = "type")
-    public int mType;
+    public String mType;
 
     @ColumnInfo(name = "timestamp")
     public long mTimestamp;
@@ -43,8 +43,8 @@ public abstract class History {
     public History() {
     }
 
-    public History(Constants.MetalType type, HistoryEntity entity) {
-        mType = type.ordinal();
+    public History(String type, HistoryEntity entity) {
+        mType = type;
         mTimestamp = entity.mDate.getTimeInMillis();
         mStrDate = StringUtils.dateToDateString(entity.mDate.getTime(), Constants.PATTERN_DATE_HISTORY);
         mHigh = entity.mHigh;
@@ -53,8 +53,8 @@ public abstract class History {
         mClose = entity.mClose;
     }
 
-    public History(Constants.MetalType type, long timestamp, String date, float high, float low, float open, float close) {
-        mType = type.ordinal();
+    public History(String type, long timestamp, String date, float high, float low, float open, float close) {
+        mType = type;
         mTimestamp = timestamp;
         mStrDate = date;
         this.mHigh = high;
@@ -63,8 +63,8 @@ public abstract class History {
         this.mClose = close;
     }
 
-    public void set(Constants.MetalType type, HistoryEntity entity) {
-        mType = type.ordinal();
+    public void set(String type, HistoryEntity entity) {
+        mType = type;
         mTimestamp = entity.mDate.getTimeInMillis();
         mStrDate = StringUtils.dateToDateString(entity.mDate.getTime(), Constants.PATTERN_DATE_HISTORY);
         mHigh = entity.mHigh;
@@ -85,7 +85,7 @@ public abstract class History {
 
         if (o instanceof History) {
             History entity = (History) o;
-            return id == entity.id && mType == entity.mType && mTimestamp == entity.mTimestamp
+            return id == entity.id && mType.equals(entity.mType) && mTimestamp == entity.mTimestamp
                     && mOpen == entity.mOpen && mClose == entity.mClose
                     && mHigh == entity.mHigh && mLow == entity.mLow;
         } else if (o instanceof HistoryEntity) {

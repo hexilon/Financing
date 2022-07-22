@@ -11,10 +11,4 @@ import com.hexon.repository.Constants;
 
 @Entity(inheritSuperIndices = true)
 public class DayHistory extends History {
-    public DayHistory() {
-    }
-
-    public DayHistory(Constants.MetalType type, HistoryEntity entity) {
-        super(type, entity);
-    }
 }

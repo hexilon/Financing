@@ -19,4 +19,15 @@
     <string name="second">秒</string>
     <string name="mobile">数据</string>
     <string name="restore">恢复默认</string>
+    <string name="exchange_rate">汇率</string>
+    <string name="forex_calendar">外汇日历</string>
+    <string name="live_news">财经新闻</string>
+    <string name="realtime_quotes">实时行情</string>
+
+    <string name="fx_open">今开</string>
+    <string name="fx_close">昨收</string>
+    <string name="fx_amplitude">振幅</string>
+    <string name="fx_volatility_range">波幅</string>
+    <string name="fx_low">最低</string>
+    <string name="fx_high">最高</string>
 </resources>

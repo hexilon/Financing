@@ -1,13 +1,36 @@
 package com.hexon.repository.base;
 
-import android.app.Application;
-
-import com.hexon.repository.Constants;
+import com.hexon.chartlib.stock.model.HistoryEntity;
+import com.hexon.mvvm.base.BaseApplication;
+import com.hexon.repository.database.room.entity.History;
 import com.hexon.util.SharedPrefsUtils;
-import com.hexon.util.constant.TimeConstants;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class BaseRepository {
-    public final static int DEFAULT_CONNECT_TIMEOUT = 5;//5s
-    public final static int UPDATE_PERIOD_WIFI = 5*TimeConstants.SEC;//5s
-    public final static int UPDATE_PERIOD_MOBILE = 20*TimeConstants.SEC;//20s
+    protected BaseApplication mApp;
+    protected SharedPrefsUtils mSpUtils;
+
+    public BaseRepository(BaseApplication application) {
+        mApp = application;
+        mSpUtils = SharedPrefsUtils.getInstance(application, this.getClass().getSimpleName());
+    }
+
+    public List<HistoryEntity> convertEntityList(List<? extends History> list) {
+        List<HistoryEntity> entityList = new ArrayList<>();
+        for (History entry : list) {
+            HistoryEntity entity = new HistoryEntity();
+            entity.mDate = Calendar.getInstance();
+            entity.mDate.setTimeInMillis(entry.mTimestamp);
+            entity.mOpen = entry.mOpen;
+            entity.mClose = entry.mClose;
+            entity.mHigh = entry.mHigh;
+            entity.mLow = entry.mLow;
+            entityList.add(entity);
+        }
+
+        return entityList;
+    }
 }

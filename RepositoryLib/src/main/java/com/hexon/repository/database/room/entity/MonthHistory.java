@@ -12,10 +12,4 @@ import com.hexon.repository.Constants;
 
 @Entity(inheritSuperIndices = true)
 public class MonthHistory extends History {
-    public MonthHistory() {
-    }
-
-    public MonthHistory(Constants.MetalType type, HistoryEntity entity) {
-        super(type, entity);
-    }
 }

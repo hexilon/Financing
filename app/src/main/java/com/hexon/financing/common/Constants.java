@@ -19,13 +19,12 @@ public class Constants {
 
     public static final String COS_PATH_DEVICE = "devices";
 
+    public static final String INTENT_EXTRA_BANK = "bank";
     public static final String INTENT_EXTRA_METAL_TYPE = "metal_type";
     public static final String INTENT_EXTRA_METAL_PERIOD = "metal_period";
 
     /* shared preference key */
     public static final String SP_KEY_FIRST_LAUNCH = "first_launch";
-    public static final String SP_KEY_UPDATE_MOBILE = "period_mobile";
-    public static final String SP_KEY_UPDATE_WIFI = "period_wifi";
     public static final String SP_KEY_DETECT_METALS = "detect_list";
 
     // 记录使用时间点

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "400be79f46b282bf4dd1fac7ddc65a02",
+    "identityHash": "ca1a25c18be61b9815419482ad77f46c",
     "entities": [
       {
         "tableName": "DayHistory",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, `date` TEXT, `open` REAL NOT NULL, `high` REAL NOT NULL, `low` REAL NOT NULL, `close` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` TEXT, `timestamp` INTEGER NOT NULL, `date` TEXT, `open` REAL NOT NULL, `high` REAL NOT NULL, `low` REAL NOT NULL, `close` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -17,8 +17,8 @@
           {
             "fieldPath": "mType",
             "columnName": "type",
-            "affinity": "INTEGER",
-            "notNull": true
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "mTimestamp",
@@ -78,7 +78,7 @@
       },
       {
         "tableName": "WeekHistory",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, `date` TEXT, `open` REAL NOT NULL, `high` REAL NOT NULL, `low` REAL NOT NULL, `close` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` TEXT, `timestamp` INTEGER NOT NULL, `date` TEXT, `open` REAL NOT NULL, `high` REAL NOT NULL, `low` REAL NOT NULL, `close` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -89,8 +89,8 @@
           {
             "fieldPath": "mType",
             "columnName": "type",
-            "affinity": "INTEGER",
-            "notNull": true
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "mTimestamp",
@@ -150,7 +150,7 @@
       },
       {
         "tableName": "MonthHistory",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, `date` TEXT, `open` REAL NOT NULL, `high` REAL NOT NULL, `low` REAL NOT NULL, `close` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` TEXT, `timestamp` INTEGER NOT NULL, `date` TEXT, `open` REAL NOT NULL, `high` REAL NOT NULL, `low` REAL NOT NULL, `close` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -161,8 +161,8 @@
           {
             "fieldPath": "mType",
             "columnName": "type",
-            "affinity": "INTEGER",
-            "notNull": true
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "mTimestamp",
@@ -271,7 +271,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '400be79f46b282bf4dd1fac7ddc65a02')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ca1a25c18be61b9815419482ad77f46c')"
     ]
   }
 }
