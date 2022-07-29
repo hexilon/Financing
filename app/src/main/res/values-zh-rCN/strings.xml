@@ -8,8 +8,9 @@
     <string name="title_stock">股市</string>
     <string name="title_mine">我的</string>
     <string name="icbc">工行贵金属</string>
-    <string name="edit">Edit</string>
-    <string name="refresh">Refresh</string>
+    <string name="icbc_noble_metal">工行账户贵金属</string>
+    <string name="edit">编辑</string>
+    <string name="refresh">刷新</string>
     <string name="settings">设置</string>
     <string name="market_close">休市</string>
     <string name="update_countdown">更新|%1$d秒</string>
@@ -30,4 +31,18 @@
     <string name="fx_volatility_range">波幅</string>
     <string name="fx_low">最低</string>
     <string name="fx_high">最高</string>
+
+    <string name="realtime">实时</string>
+    <string name="day">日K</string>
+    <string name="week">周K</string>
+    <string name="month">月K</string>
+
+    <string name="curr_price">当前价</string>
+    <string name="change">涨跌</string>
+    <string name="lowest_price">最低价</string>
+    <string name="highest_price">最高价</string>
+    <string name="bank_purchase_price">银行买入</string>
+    <string name="bank_sell_price">银行卖出</string>
+    <string name="unit">单位</string>
+    <string name="price">价格</string>
 </resources>

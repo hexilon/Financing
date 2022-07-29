@@ -35,7 +35,7 @@ import com.hexon.repository.Constants;
 import com.hexon.util.LogUtils;
 import com.hexon.util.constant.TimeConstants;
 
-public class RealtimeQuotesFragment extends BaseFragment<FragmentRealtimeQuotesBinding, RealtimeQuotesViewModel> {
+public class RealtimeQuotesFragment extends BaseFragment<FragmentRealtimeQuotesBinding, NobleMetalViewModel> {
     static final int SPAN_COUNT = 2;
     CountDownTimer mTimer;
     MaterialDialog mUpdatePeriodSettingDlg;
@@ -54,12 +54,13 @@ public class RealtimeQuotesFragment extends BaseFragment<FragmentRealtimeQuotesB
     }
 
     @Override
-    public RealtimeQuotesViewModel initViewModel() {
-        return new ViewModelProvider(this).get(RealtimeQuotesViewModel.class);
+    public NobleMetalViewModel initViewModel() {
+        return new ViewModelProvider(this).get(NobleMetalViewModel.class);
     }
 
     @Override
     public void initData() {
+        mViewModel.setFetchDataType(NobleMetalViewModel.FetchDataType.ALL_DATA_REALTIME_SUMMARY);
         mBinding.spinnerProducts.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -189,7 +190,7 @@ public class RealtimeQuotesFragment extends BaseFragment<FragmentRealtimeQuotesB
             extends RecyclerViewBindingAdapter<MutableLiveData<RealtimeQuotesEntity>, ViewDataBinding> {
         public RealtimeQuotesAdapter() {
             super(RealtimeQuotesFragment.this.getContext());
-            mItemList.addAll(mViewModel.getDataList());
+            mItemList.addAll(mViewModel.getRealtimeQuotesList());
         }
 
         @Override
@@ -213,10 +214,10 @@ public class RealtimeQuotesFragment extends BaseFragment<FragmentRealtimeQuotesB
                         Constants.MetalType type = Constants.MetalType.values()[itemBinding.getEntity().mType];
                         LogUtils.d("onClick: " + type);
                         Intent intent = new Intent();
-                        //intent.setClass(view.getContext(), ProductMainActivity.class);
+                        intent.setClass(view.getContext(), NobleMetalChartActivity.class);
                         intent.putExtra(INTENT_EXTRA_BANK, mBank);
                         intent.putExtra(INTENT_EXTRA_METAL_TYPE, type);
-                        //view.getContext().startActivity(intent);
+                        view.getContext().startActivity(intent);
                     }
                 });
             }

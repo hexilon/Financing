@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.hexon.financing.ui.noblemetal.RealtimeQuotesViewModel" />
+            type="com.hexon.financing.ui.noblemetal.NobleMetalViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

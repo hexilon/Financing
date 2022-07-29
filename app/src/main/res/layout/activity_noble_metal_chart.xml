@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hexon.financing.ui.noblemetal.NobleMetalViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layout_title"
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/full_screen_title_height"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            android:background="@color/title">
+            <TextView
+                android:id="@+id/tv_bank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_font_size"
+                />
+            <TextView
+                android:id="@+id/tv_metal_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.mCurrMetalName}"
+                android:textColor="@color/md_light_blue_50"
+                android:textSize="@dimen/sub_title_font_size"/>
+        </LinearLayout>
+        <GridLayout
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layout_title"
+            android:orientation="horizontal"
+            android:rowCount="4"
+            android:columnCount="1">
+
+            <!-- First line -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/curr_price"
+                    android:textSize="16sp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/currPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{String.valueOf(viewModel.mCurrRealtimeQuotes.mPrice)}"
+                    android:textColor="@{viewModel.mCurrRealtimeQuotes.mChange > 0f ? @color/increase : (viewModel.mCurrRealtimeQuotes.mChange &lt; 0f ? @color/decrease : @color/neutral)}"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/change"
+                    android:textSize="16sp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/change_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(viewModel.mCurrRealtimeQuotes.mChange)}"
+                    android:textColor="@{viewModel.mCurrRealtimeQuotes.mChange > 0f ? @color/increase : (viewModel.mCurrRealtimeQuotes.mChange &lt; 0f ? @color/decrease : @color/neutral)}"
+                    android:textSize="16sp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+            <!-- Second line -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="@string/lowest_price" />
+                <TextView
+                    android:id="@+id/low_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/decrease"
+                    android:textSize="16sp"
+                    android:text="@{String.valueOf(viewModel.mCurrRealtimeQuotes.mLow)}"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="@string/highest_price" />
+                <TextView
+                    android:id="@+id/high_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/increase"
+                    android:textSize="16sp"
+                    android:text="@{String.valueOf(viewModel.mCurrRealtimeQuotes.mHigh)}"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <!-- Third line -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/bank_purchase_price"
+                    android:textSize="16sp"
+                    />
+                <TextView
+                    android:id="@+id/buy_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@{String.valueOf(viewModel.mCurrRealtimeQuotes.mBuy)}"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/bank_sell_price"
+                    android:textSize="16sp"
+                    />
+                <TextView
+                    android:id="@+id/sale_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@{String.valueOf(viewModel.mCurrRealtimeQuotes.mSale)}"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <!-- Fourth line -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/unit"
+                        android:textSize="16sp"
+                        />
+                    <TextView
+                        android:id="@+id/unit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@{String.valueOf(viewModel.mCurrRealtimeQuotes.mUnit)}"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textSize="16sp"
+                        android:text="@string/refresh" />
+                    <TextView
+                        android:id="@+id/refresh"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@{viewModel.mCurrRealtimeQuotes.mStrRefresh}"
+                        android:layout_weight="3"/>
+                </LinearLayout>
+            </LinearLayout>
+        </GridLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

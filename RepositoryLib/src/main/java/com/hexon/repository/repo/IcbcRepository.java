@@ -222,6 +222,8 @@ public class IcbcRepository extends BaseRepository {
             parseTodayDatasResponse(Constants.MetalType.RMB_GOLD, response.body().string());
         } catch (SocketTimeoutException e) {
             e.printStackTrace();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -298,8 +300,7 @@ public class IcbcRepository extends BaseRepository {
         Elements elements = doc.getElementsByTag("data");
         //LogUtils.d("data elements:" + elements.size());
         for (Element element : elements) {
-            Constants.MetalType index = null;
-            index = getMetalType(element.attr("id"));
+            Constants.MetalType index = getMetalType(element.attr("id"));
             if (index == null) {
                 continue;
             }
@@ -317,6 +318,11 @@ public class IcbcRepository extends BaseRepository {
             entity.mPrice = Float.parseFloat(element.attr("zjj"));
             entity.mHigh = Float.parseFloat(element.attr("zgzjj"));
             entity.mLow = Float.parseFloat(element.attr("zdzjj"));
+
+            if (getMetalName(index).isEmpty() && !entity.mName.isEmpty()) {
+                setMetalName(index, entity.mName);
+            }
+
             if (mSpUtils.contains(SP_KEY_METAL_NOW_QUOTE + index)) {
                 PriceInfo priceInfo = (PriceInfo) mSpUtils.getData(
                         SP_KEY_METAL_NOW_QUOTE + index, new PriceInfo());
@@ -346,7 +352,7 @@ public class IcbcRepository extends BaseRepository {
     /*
      *获取当天@{type}的实时数据
      */
-    public Observable<Resource<RealtimeQuotesEntity>> getNowDatas(Constants.MetalType type) {
+    public Observable<Resource<RealtimeQuotesEntity>> getRealtimeQuotes(Constants.MetalType type) {
         Constants.Currency currency;
         switch (type) {
             case RMB_GOLD:
@@ -365,10 +371,10 @@ public class IcbcRepository extends BaseRepository {
                 currency = Constants.Currency.RMB;
         }
 
-        return getNowDatas(type, currency);
+        return getRealtimeQuotes(type, currency);
     }
 
-    private Observable<Resource<RealtimeQuotesEntity>> getNowDatas(
+    private Observable<Resource<RealtimeQuotesEntity>> getRealtimeQuotes(
             final Constants.MetalType metal, Constants.Currency currency) {
         String queryId = getMetalString(metal);
 

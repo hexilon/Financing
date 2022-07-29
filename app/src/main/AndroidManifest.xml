@@ -46,6 +46,10 @@
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent"/>
+
+        <activity android:name="com.hexon.financing.ui.noblemetal.NobleMetalChartActivity"
+            android:theme="@style/Theme.Financing.NoActionBar"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.hexon.financing.fileProvider"

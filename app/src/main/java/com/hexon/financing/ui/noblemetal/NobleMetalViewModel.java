@@ -6,6 +6,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.hexon.chartlib.stock.model.HistoryEntity;
+import com.hexon.chartlib.stock.model.RealtimeEntity;
 import com.hexon.chartlib.stock.model.RealtimeQuotesEntity;
 import com.hexon.financing.MyApplication;
 import com.hexon.financing.base.NetworkViewModel;
@@ -32,18 +34,33 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class NobleMetalViewModel extends NetworkViewModel {
     IcbcRepository mIcbcRepo = IcbcRepository.getInstance(MyApplication.getInstance());
-    ArrayList<MutableLiveData<RealtimeQuotesEntity>> mList =
+    ArrayList<MutableLiveData<RealtimeQuotesEntity>> mRealtimeQuotesList =
             new ArrayList<>(Constants.MetalType.values().length);
+    public MutableLiveData<RealtimeQuotesEntity> mCurrRealtimeQuotes;
+    MutableLiveData<List<HistoryEntity>> mHistoryList = new MutableLiveData<List<HistoryEntity>>();
+    MutableLiveData<List<RealtimeEntity>> mRealtimeList = new MutableLiveData<List<RealtimeEntity>>();
     private Disposable mDisposable;
     private Constants.NobleMetalBank mBank;
+    public MutableLiveData<String> mCurrMetalName = new MutableLiveData<>();
+    private Constants.MetalType mCurrMetalType;
+    private FetchDataType mFetchDataType = FetchDataType.INVALID;
+
+    public enum FetchDataType {
+        INVALID,
+        ALL_DATA_REALTIME_SUMMARY,
+        ONE_DATA_REALTIME_DETAIL,
+        HISTORY_LIST_DATA,
+        REALTIME_LIST_DATA,
+    }
 
     public NobleMetalViewModel(@NonNull Application application) {
         super(application);
         initList();
+        LogUtils.d("NobleMetalViewModel create");
     }
 
-    ArrayList<MutableLiveData<RealtimeQuotesEntity>> getDataList() {
-        return mList;
+    ArrayList<MutableLiveData<RealtimeQuotesEntity>> getRealtimeQuotesList() {
+        return mRealtimeQuotesList;
     }
 
     @Override
@@ -58,12 +75,28 @@ public class NobleMetalViewModel extends NetworkViewModel {
     @Override
     public void startGetData() {
         if (mBank == Constants.NobleMetalBank.ICBC) {
-            startGetIcbcQuotes();
+            switch (mFetchDataType) {
+                case ALL_DATA_REALTIME_SUMMARY:
+                    startGetIcbcAllQuotes();
+                    break;
+                case ONE_DATA_REALTIME_DETAIL:
+                    startGetIcbcQuotes(mCurrMetalType);
+                    break;
+                case REALTIME_LIST_DATA:
+                    startGetIcbcRealtimeList(mCurrMetalType);
+                    break;
+                case HISTORY_LIST_DATA:
+                    startGetIcbcHistoryList(mCurrMetalType);
+                    break;
+                case INVALID:
+                    LogUtils.e("invalid");
+                    break;
+            }
         }
     }
 
-    private void startGetIcbcQuotes() {
-        LogUtils.d("startGetQuotes");
+    private void startGetIcbcAllQuotes() {
+        LogUtils.d("startGetIcbcAllQuotes");
         if (mDisposable != null && !mDisposable.isDisposed()) {
             LogUtils.w("dispose");
             mDisposable.dispose();
@@ -82,24 +115,52 @@ public class NobleMetalViewModel extends NetworkViewModel {
                 //.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     //LogUtils.d("times:" + aLong);
-                    fetchIcbcRealtimeQuotes();
+                    fetchIcbcAllRealtimeQuotes();
                     if (mIcbcRepo.isMarketOpening()) {
                         mIsStartRefresh.postValue(true);
                     }
                 });
     }
 
+    private void startGetIcbcQuotes(Constants.MetalType metalType) {
+        LogUtils.d("startGetIcbcQuotes " + metalType);
+        stopGetData();
+        mDisposable = Flowable.interval(0, mUpdatePeriod, TimeUnit.MILLISECONDS)
+                .takeUntil(aLong -> {
+                    mIsStartRefresh.postValue(false);
+                    return !mIcbcRepo.isMarketOpening();
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.newThread())
+                //.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    //LogUtils.d("times:" + aLong);
+                    fetchIcbcRealtimeQuotes(metalType);
+                    if (mIcbcRepo.isMarketOpening()) {
+                        mIsStartRefresh.postValue(true);
+                    }
+                });
+    }
+
+    private void startGetIcbcRealtimeList(Constants.MetalType metalType) {
+        LogUtils.d("startGetIcbcRealtimeList " + metalType);
+    }
+
+    private void startGetIcbcHistoryList(Constants.MetalType metalType) {
+        LogUtils.d("startGetIcbcHistoryList " + metalType);
+    }
+
     private void initList() {
-        mList.clear();
+        mRealtimeQuotesList.clear();
         for (Constants.MetalType type : Constants.MetalType.values()) {
             MutableLiveData<RealtimeQuotesEntity> entity = new MutableLiveData<>();
             entity.setValue(new RealtimeQuotesEntity());
-            mList.add(entity);
+            mRealtimeQuotesList.add(entity);
         }
     }
 
     @SuppressLint("CheckResult")
-    private void fetchIcbcRealtimeQuotes() {
+    private void fetchIcbcAllRealtimeQuotes() {
         mIcbcRepo.getAllRealtimeQuotes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())
@@ -109,24 +170,29 @@ public class NobleMetalViewModel extends NetworkViewModel {
                         for (RealtimeQuotesEntity entity : list) {
                             Constants.MetalType type = Constants.MetalType.values()[entity.mType];
                             //LogUtils.d("fetchIcbcRealtimeQuotes:" + entity);
-                            mList.get(type.ordinal()).postValue(entity);
+                            mRealtimeQuotesList.get(type.ordinal()).postValue(entity);
                         }
+                    }
+                });
+    }
+
+    private void fetchIcbcRealtimeQuotes(Constants.MetalType metalType) {
+        mIcbcRepo.getRealtimeQuotes(metalType)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.newThread())
+                .subscribe(resource -> {
+                    if (resource.getStatus() == Status.SUCCESS) {
+                        mCurrRealtimeQuotes.postValue(resource.getData());
                     }
                 });
     }
 
     @Override
     public void stopGetData() {
-        if (mBank == Constants.NobleMetalBank.ICBC) {
-            stopGetIcbcQuotes();
-        }
-    }
-
-    private void stopGetIcbcQuotes() {
-        LogUtils.d("stopGetIcbcQuotes");
+        LogUtils.d("stopGetData");
         mIsStartRefresh.postValue(false);
         if (mDisposable != null && !mDisposable.isDisposed()) {
-            //LogUtils.d("dispose");
+            LogUtils.d("dispose");
             mDisposable.dispose();
         }
 
@@ -138,9 +204,20 @@ public class NobleMetalViewModel extends NetworkViewModel {
         startGetData();
     }
 
+    public void setFetchDataType(FetchDataType type) {
+        mFetchDataType = type;
+        startGetData();
+    }
+
+    public void setNobleMetalType(Constants.MetalType currMetalType) {
+        mCurrMetalType = currMetalType;
+        mCurrMetalName.postValue(mIcbcRepo.getMetalName(currMetalType));
+        mCurrRealtimeQuotes = mRealtimeQuotesList.get(currMetalType.ordinal());
+    }
+
     public void updateOnce() {
         stopGetData();
-        fetchIcbcRealtimeQuotes();
+        fetchIcbcAllRealtimeQuotes();
         mIsStartRefresh.postValue(false);
         startGetData();
     }
